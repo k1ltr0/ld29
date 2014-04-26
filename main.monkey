@@ -1,5 +1,7 @@
 Import imports
 
+
+''' alguna wea
 Class Planet Implements iDrawable
 
 	Field rotation:Float = 0
