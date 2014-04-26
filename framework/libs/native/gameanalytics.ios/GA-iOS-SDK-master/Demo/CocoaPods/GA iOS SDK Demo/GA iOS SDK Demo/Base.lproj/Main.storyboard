@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="V8J-wz-sU6">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--Batch View Controller - batch calls-->
+        <scene sceneID="wZi-qE-3hW">
+            <objects>
+                <viewController id="qWN-HQ-Xoo" customClass="GABatchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p17-cv-UX4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bti-Ap-k0h">
+                                <rect key="frame" x="82" y="29" width="160" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Disable Debug Log">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleDebugLog:" destination="qWN-HQ-Xoo" eventType="touchDown" id="34c-sb-uRg"/>
+                                    <action selector="toggleDebugLog:" destination="7Dx-dU-BTV" eventType="touchDown" id="rT2-0G-BBc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F4u-di-IcL">
+                                <rect key="frame" x="108" y="333" width="105" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Batch send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="batchSend:" destination="qWN-HQ-Xoo" eventType="touchDown" id="dVM-HM-Nh3"/>
+                                    <action selector="toggleDebugLog:" destination="7Dx-dU-BTV" eventType="touchDown" id="dlh-Mv-Dhg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lVW-uM-H2t">
+                                <rect key="frame" x="51" y="91" width="229" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logUserDataWithParams">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logUserData:" destination="7Dx-dU-BTV" eventType="touchDown" id="0Fa-AI-BG2"/>
+                                    <action selector="logUserData:" destination="qWN-HQ-Xoo" eventType="touchDown" id="iae-ip-RsG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PXH-JV-f8X">
+                                <rect key="frame" x="54" y="153" width="216" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logBusinessDataEvent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logBusinessData:" destination="qWN-HQ-Xoo" eventType="touchDown" id="Ge0-h1-FNP"/>
+                                    <action selector="logBusinessData:" destination="7Dx-dU-BTV" eventType="touchDown" id="Ncz-9n-FJb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="X7e-xl-e9J">
+                                <rect key="frame" x="42" y="208" width="241" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logGameDesignDataEvent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logGameDesingData:" destination="7Dx-dU-BTV" eventType="touchDown" id="Qah-ZW-QMP"/>
+                                    <action selector="logGameDesingData:" destination="qWN-HQ-Xoo" eventType="touchDown" id="T1r-FB-aLq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1Rs-oM-TO2">
+                                <rect key="frame" x="22" y="268" width="277" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logQualityAssuranceDataEvent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logQAData:" destination="qWN-HQ-Xoo" eventType="touchDown" id="Cfl-KT-68I"/>
+                                    <action selector="logQAData:" destination="7Dx-dU-BTV" eventType="touchDown" id="h7x-X7-hRz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="batch calls" id="HBa-dE-Qjf"/>
+                    <connections>
+                        <outlet property="toggleLogButton" destination="bti-Ap-k0h" id="qeC-Wg-87t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lhb-HI-3fh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-91" y="18"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="12M-T6-WE6">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="V8J-wz-sU6" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="tBy-Ke-sO2">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="7Dx-dU-BTV" kind="relationship" relationship="viewControllers" id="Uv9-SV-VqO"/>
+                        <segue destination="qWN-HQ-Xoo" kind="relationship" relationship="viewControllers" id="ARo-tK-m2E"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KuP-Of-5kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-625" y="-308"/>
+        </scene>
+        <!--View Controller - single calls-->
+        <scene sceneID="ePY-Oe-imZ">
+            <objects>
+                <viewController id="7Dx-dU-BTV" customClass="GAViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XMA-am-Qef">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pCO-Fg-pxR">
+                                <rect key="frame" x="75" y="48" width="160" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Disable Debug Log">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleDebugLog:" destination="7Dx-dU-BTV" eventType="touchDown" id="V7r-L8-1g3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZRe-8S-NTV">
+                                <rect key="frame" x="44" y="115" width="229" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logUserDataWithParams">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logUserData:" destination="7Dx-dU-BTV" eventType="touchDown" id="yrU-2S-aaK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KV8-FW-rhp">
+                                <rect key="frame" x="50" y="187" width="216" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logBusinessDataEvent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logBusinessData:" destination="7Dx-dU-BTV" eventType="touchDown" id="ZQk-zo-FRb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lde-DT-NTz">
+                                <rect key="frame" x="40" y="257" width="241" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logGameDesignDataEvent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logGameDesingData:" destination="7Dx-dU-BTV" eventType="touchDown" id="g6C-gp-GuF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QvL-f5-hRe">
+                                <rect key="frame" x="22" y="320" width="277" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="call logQualityAssuranceDataEvent">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logQAData:" destination="7Dx-dU-BTV" eventType="touchDown" id="HRV-2v-Ypf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="single calls" id="kQB-Hf-Q3n"/>
+                    <connections>
+                        <outlet property="toggleLogButton" destination="pCO-Fg-pxR" id="09l-Ls-rGM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P0U-64-E1i" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-91" y="-651"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

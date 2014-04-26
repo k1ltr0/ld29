@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <div id="fb-root"></div>
+        <script type="text/javascript">
+
+            function getQueryParams(qs) {
+                qs = qs.split("+").join(" ");
+
+                var params = {}, tokens,
+                    re = /[?&]?([^=]+)=([^&]*)/g;
+
+                while (tokens = re.exec(qs)) {
+                    params[decodeURIComponent(tokens[1])]
+                        = decodeURIComponent(tokens[2]);
+                }
+
+                return params;
+            }
+            loaded = function ()
+            {
+                var params = getQueryParams( document.location.href );
+                opener.location.href = 'MonkeyGame.html#?token=' + params.access_token;
+                close();
+            }
+        </script>
+    </head>
+    <body onLoad="loaded()" >
+    </body>
+</html>

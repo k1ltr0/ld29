@@ -1,0 +1,9 @@
+Mobile App Name: Osom Memo 
+Type: Android 
+Destination URL: https://play.google.com/store/apps/details?id=com.loadingplay.osom 
+Advertiser ID:  16586 
+App ID:  49426 
+Package Name: com.loadingplay.osom 
+Conversion Key: 28ddb4bff788f7f96fd329c649ec70a0 
+------------------- 
+Need more help? Please visit our support site: http://support.mobileapptracking.com/

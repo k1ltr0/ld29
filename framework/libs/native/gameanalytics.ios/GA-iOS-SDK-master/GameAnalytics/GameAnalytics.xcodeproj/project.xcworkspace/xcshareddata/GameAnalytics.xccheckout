@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B7F68169-A9B9-4E43-92E7-05681D2FF6FC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GameAnalytics</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1100D171-BD15-4112-8F06-340D7E3FBE98</key>
+		<string>ssh://github.com/GameAnalytics/GA-iOS-SDK.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GameAnalytics/GameAnalytics.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1100D171-BD15-4112-8F06-340D7E3FBE98</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/GameAnalytics/GA-iOS-SDK.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1100D171-BD15-4112-8F06-340D7E3FBE98</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1100D171-BD15-4112-8F06-340D7E3FBE98</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GA-iOS-SDK</string>
+		</dict>
+	</array>
+</dict>
+</plist>
