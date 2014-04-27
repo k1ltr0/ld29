@@ -16,9 +16,9 @@ Class Planet Implements iDrawable
 		Local delta_secs:Float = Float(delta) / 1000.0
 		
 		If (KeyDown(KEY_LEFT))
-			rotation -= 10
+			rotation -= 360 * delta_secs
 		ElseIf(KeyDown(KEY_RIGHT))
-			rotation += 10
+			rotation += 360 * delta_secs
 		EndIf
 	End
 
@@ -30,35 +30,6 @@ Class Planet Implements iDrawable
 			DrawRect(0,0,100,100)
 		PopMatrix()
 	End
-End
-
-
-Class Cannon Implements iDrawable
-
-	Field rotation:Int = 0
-
-	Method Create:Void()
-	End
-
-	Method Update:Void(delta:Int)
-		Local delta_secs:Float = Float(delta) / 1000.0
-		
-		If (KeyDown(KEY_A))
-			rotation -= 10
-		ElseIf(KeyDown(KEY_D))
-			rotation += 10
-		EndIf
-	End
-
-	Method Render:Void()
-		PushMatrix()
-			Translate(0 , DeviceHeight()) 
-			Rotate( rotation )
-			DrawCircle(0,0, 100)
-			DrawRect(0,0,100,100)
-		PopMatrix()
-	End
-
 End
 
 
