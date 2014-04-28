@@ -41,7 +41,7 @@ Class Tentacle Implements iDrawable
 		If ( Self.animation.GetCurrentSequenceName() = "hit" And Self.animation.IsLastFrame() )
 			state = STATE_WEAK
 			Self.animation.PlaySequence("idle")
-		EndIf
+		Endif
 		
 	End
 
@@ -68,7 +68,10 @@ Class Planet Implements iDrawable
 
 	Field rotation:Float = 0
 	Field radius:Float = 115
-
+	Field velo1:Int = 0
+	Field velo2:Int = 0
+	Field timer2:Float = 0
+	Field up: Int=1 
 	Field idle_animation:lpAnimatedSprite
 	Field position:Vector2
 
@@ -80,11 +83,6 @@ Class Planet Implements iDrawable
 	''' time control for attack
 	Field max_time:Int = 3000
 	Field timer:Int = 0
-
-	Field max_time_pain:Int = 500
-	Field timer_pain:Int = 0
-
-	Field feeling_pain:Bool = False
 
 	Method New()
 		idle_animation = New lpAnimatedSprite("planet.png", New Vector2(0,0), 230, 230, 20)
@@ -117,15 +115,40 @@ Class Planet Implements iDrawable
 
 	Method Create:Void()
 	End
+	
+	
+	
+	
+	
+	
+	
+	
 
 	Method Update:Void(delta:Int)
 		Local delta_secs:Float = Float(delta) / 1000.0
 		
-		If (KeyDown(KEY_LEFT))
-			rotation -= 360 * delta_secs
-		ElseIf(KeyDown(KEY_RIGHT))
-			rotation += 360 * delta_secs
-		EndIf
+		
+		
+		If(timer2/10 > 500+ Rnd(-100,100))
+			If(up=1)
+				up=2
+			
+			Else
+			up=1
+				
+			End
+		timer2=0
+		End
+  		
+  		If(up=1)
+  		rotation += Clamp(-5.0 + 5.0*timer2/1000,-5.0,5.0)
+  		End
+  		If(up= 2) 
+  		rotation -= Clamp(-5.0 + 5.0*timer2/1000,-5.0,5.0)
+  		End
+  		 
+  		
+  	
 
 		''' animations updates
 		idle_animation.Update(delta)
@@ -145,28 +168,31 @@ Class Planet Implements iDrawable
 		If ( idle_animation.IsLastFrame() And idle_animation.GetCurrentSequenceName() = "rage" )
 			Self.idle_animation.PlaySequence("idle", 50)
 		EndIf
-
-		If ( Self.feeling_pain )
-
-			Self.timer_pain += delta
-
-			If (Self.timer_pain >= max_time_pain)
-				Self.timer_pain = 0
-				Self.feeling_pain = False
-			EndIf
-		End
-
+		
+		timer2 += delta
 		timer += delta
+		
+		
+		
+		
+	
+	
 	End
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	Method Render:Void()
 		PushMatrix()
-			If (Self.feeling_pain)
-				If ( Int(Self.timer_pain * 0.01) Mod 2 = 0 )
-					SetColor(255,0,0)
-				EndIf
-			End
-				
 			Translate( Self.position.X, Self.position.Y ) 
 			Rotate( rotation )
 			DrawCircle(0,0, Self.radius)
@@ -177,25 +203,19 @@ Class Planet Implements iDrawable
 			For Local t:=Eachin Self.tentacles
 				t.Render()
 			Next
-
-			SetColor(255,255,255)
 		PopMatrix()
 	End
 
 	Method HitByBullet:Void(bullet:Bullet, nth:Int)
 
-		If (Self.tentacles.Get(nth).state = Tentacle.STATE_WEAK)
-			Self.tentacles.Get(nth).HitBy()
+		''' play sound
+		PlaySound(hit_sound, channel)
+		channel += 1
+		If (channel >= 5)
+			channel = 0
+		EndIf
 
-			Self.feeling_pain = True
-		Else
-			''' play sound
-			PlaySound(hit_sound, channel)
-			channel += 1
-			If (channel >= 5)
-				channel = 0
-			EndIf
-		End
+		Self.tentacles.Get(nth).HitBy()
 
 		''' shake camera
 		GameScene.GetInstance().Shake(100, 5)
