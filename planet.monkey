@@ -69,6 +69,11 @@ Class Planet Implements iDrawable
 	Field rotation:Float = 0
 	Field radius:Float = 115
 
+	Field velo1:Int = 0
+	Field velo2:Int = 0
+	Field timer2:Float = 0
+	Field upp: Int=1 
+
 	Field idle_animation:lpAnimatedSprite
 	Field position:Vector2
 
@@ -85,6 +90,7 @@ Class Planet Implements iDrawable
 	Field timer_pain:Int = 0
 
 	Field feeling_pain:Bool = False
+
 
 	Method New()
 		idle_animation = New lpAnimatedSprite("planet.png", New Vector2(0,0), 230, 230, 20)
@@ -120,6 +126,40 @@ Class Planet Implements iDrawable
 
 	Method Update:Void(delta:Int)
 		Local delta_secs:Float = Float(delta) / 1000.0
+
+
+		'''' rotation
+		If(30 <= timer2)	
+			'If (KeyDown(KEY_LEFT))
+				If( KeyHit(KEY_LEFT))
+					timer2=0
+					upp = 1
+				End
+					
+			
+				'rotation -= Clamp(-5+ 5.0/1000*timer2,-5.0,5.0)
+					
+					
+			'Elseif(KeyDown(KEY_RIGHT))
+				If( KeyHit(KEY_RIGHT))
+					timer2=0
+					upp = 2
+				End
+				
+				'rotation -= Clamp(+5 - 5.0/1000*timer2,-5.0,5.0)
+				
+			
+			'Endif
+	  
+	  
+	  		If(Not(KeyDown(KEY_LEFT)) And Not(KeyDown(KEY_RIGHT)) And upp = 1 )
+				rotation -=  Clamp(-5+ 5.0/1000*timer2,-5.0,5.0)
+			Elseif(Not(KeyDown(KEY_LEFT)) And Not(KeyDown(KEY_RIGHT)) And upp = 2 )
+				rotation -= Clamp(+5 - 5.0/1000*timer2,-5.0,5.0)
+			End		
+	  		
+	  	End	
+	  	''' end rotation
 		
 		If (KeyDown(KEY_LEFT))
 			rotation -= 360 * delta_secs
@@ -156,6 +196,7 @@ Class Planet Implements iDrawable
 			EndIf
 		End
 
+		timer2 += delta
 		timer += delta
 	End
 
