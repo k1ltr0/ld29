@@ -104,6 +104,7 @@ Class Planet Implements iDrawable
 	Field velo2:Int = 0
 	Field timer2:Float = 0
 	Field upp: Int=1 
+	Field up: Int=1
 
 	Field end_animation:lpAnimatedSprite
 	Field idle_animation:lpAnimatedSprite
@@ -187,35 +188,23 @@ Class Planet Implements iDrawable
 
 
 		'''' rotation
-		If(30 <= timer2)	
-			'If (KeyDown(KEY_LEFT))
-				If( KeyHit(KEY_LEFT))
-					timer2=0
-					upp = 1
-				End
-					
+		If(timer2/10 > 500+ Rnd(-100,100))
+			If(up=1)
+				up=2
 			
-				'rotation -= Clamp(-5+ 5.0/1000*timer2,-5.0,5.0)
-					
-					
-			'Elseif(KeyDown(KEY_RIGHT))
-				If( KeyHit(KEY_RIGHT))
-					timer2=0
-					upp = 2
-				End
+			Else
+			up=1
 				
-				'rotation -= Clamp(+5 - 5.0/1000*timer2,-5.0,5.0)
-			
-			'Endif
-	  
-	  
-	  		If(Not(KeyDown(KEY_LEFT)) And Not(KeyDown(KEY_RIGHT)) And upp = 1 )
-				rotation -=  Clamp(-5+ 5.0/1000*timer2,-5.0,5.0)
-			Elseif(Not(KeyDown(KEY_LEFT)) And Not(KeyDown(KEY_RIGHT)) And upp = 2 )
-				rotation -= Clamp(+5 - 5.0/1000*timer2,-5.0,5.0)
-			End		
-	  		
-	  	End	
+			End
+		timer2=0
+		End
+  		
+  		If(up=1)
+  		rotation += Clamp(-5.0 + 5.0*timer2/1000,-5.0,5.0)
+  		End
+  		If(up= 2) 
+  		rotation -= Clamp(-5.0 + 5.0*timer2/1000,-5.0,5.0)
+  		End
 	  	''' end rotation
 		
 		If (KeyDown(KEY_LEFT))
