@@ -196,7 +196,7 @@ Class Cannon Implements iDrawable
 			rotation += ROTATE_SPEED * delta_secs
 		EndIf
 
-		If (KeyHit(KEY_SPACE))
+		If (KeyHit(KEY_SPACE) Or MouseHit())
 			Self.Shot()
 		EndIf
 		

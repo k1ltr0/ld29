@@ -1,6 +1,6 @@
 Import imports
 
-
+#TEXT_FILES+="|*.fnt"
 Class GameScene Extends lpScene
 
 	Field loading_steps:Int = 10
@@ -15,7 +15,9 @@ Class GameScene Extends lpScene
 	Field shake_timer:Float = 0
 	Field shake_flag:Bool = True
 
-	Global _inst:GameScene
+	Global _instance:GameScene
+
+	Field lose:Bool = False
 
 	Method Loading:Int(delta:Int)
 
@@ -30,7 +32,7 @@ Class GameScene Extends lpScene
 				Self.AddChild(Self.planet)
 				Self.AddChild(Self.cannon)
 
-				GameScene._inst = Self
+				GameScene._instance = Self
 		End
 
 		Self.loading_steps -= 1
@@ -55,14 +57,24 @@ Class GameScene Extends lpScene
 			
 		EndIf
 
-		Super.Update(delta)
+		If (Not(lose))
+			Super.Update(delta)
+		Else
+			Self.planet.Update(delta)
+		EndIf
+
 	End
 
 	Method Render:Void()
 		If (shake_flag)
 			Translate(Rnd(-shake,shake), Rnd(-shake,shake))
 		EndIf
-		Super.Render()
+
+		If (Not(lose))
+			Super.Render()
+		Else
+			Self.planet.Render()
+		EndIf
 	End
 
 
@@ -71,8 +83,12 @@ Class GameScene Extends lpScene
 		DrawText("loading...", 0, 0)
 	End
 
+	Method Lose:Void()
+		Self.lose = True
+	End
+
 	Function GetInstance:GameScene()
-		Return GameScene._inst
+		Return GameScene._instance
 	End
 	
 	
@@ -86,12 +102,16 @@ Class BeneathTheSurface Extends lpSceneMngr
 	Method Create:Void()
 		SetUpdateRate(60)
 
-		Self.SetScene(0)
+		Self.SetScene(1)
 	End
 
 	Method GetScene:lpScene(id:Int)
 		If (id = 0)
 			Return New GameScene()
+		ElseIf (id = 1)
+			Return New TitleScene()
+		ElseIf (id = 2)
+			Return New Credits()
 		EndIf
 		
 		Return Null
