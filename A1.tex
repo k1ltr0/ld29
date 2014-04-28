@@ -1,0 +1,102 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[letterpaper,left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.bmp,.png,.jpg,.pdf}
+\usepackage[spanish]{babel}
+\usepackage{courier}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{quote}
+\begin{minipage}{1.5cm}
+\end{minipage}  
+ \begin{minipage}{6cm}
+ \vspace{0.5cm}
+ 
+\end{minipage}
+\begin{center}
+
+{\huge Trayectorias del juego}\\
+\vspace{0.3 cm}
+
+\hrulefill
+\end{center}
+ 
+\textbf{Campo de fluidos}
+
+Se resuelve la ecuacion diferencial ordinaria de segundo orden
+
+$$m \ddot r = mg - \beta \dot r $$
+
+Hacemos el cambio de variables $\dot r = v$ e intentamos con el ansatz $v=Ae^{\lambda t}$ para la homogenea
+
+$$m \dot v + \beta v = mg $$
+
+$$ m \lambda A e^{\lambda t}+ \beta e^{\lambda t}=0 $$
+
+$$ \rightarrow \lambda= - \frac{\beta }{m} $$
+
+
+si $v= cte=k$
+
+$$ k = mg/\beta$$
+
+$$ r(t)= Ae^{- \frac{\beta }{m} t}+ \frac{mg}{\beta} $$
+Por lo tanto solo afecta la velocidad, decae exponencialmente y llega a la velocidad terminal 
+
+\textbf{Super gravedad}
+
+
+Las ecuaciones a resolver son
+
+
+$$m \ddot r = r\dot \theta^2 -mg $$
+$$ m(r\ddot \theta + 2 \dot r \dot \theta)=0 $$
+
+No hay solucion analitica, por lo tanto, aproximamos la solucion como una elipse donde uno de los focos es el centro de masa entre ambos cuerpos (cañon y mosntruo). La solucion a la posicion es 
+
+$$x(t)= (a sin(t), b cos(t))$$
+
+debemos encontrar entonces las constantes a y b (semi eje mayor y menor) de acuerdo a la posicion del cañon.
+
+Primero debemos calcular el tiempo en que demora en recorrer la proyeccion  en la linea que une el centro del cañon con el mosntruo (eje central)
+
+$$ asin(t)= Lcos(\phi) \quad \rightarrow \quad t_0= arcsin( \frac{L}{a}cos(\phi)) $$
+
+donde L es el largo del cañon y $\phi$ es el angulo de incidencia.
+ 
+Luego la velocidad de la bala es
+
+$$ v(t)= (acos(t),-bsin(t)) $$
+entones por condiciones iniciales en  el instante $t_0$ debe ser la velocidad inicial
+
+$$  v_0 cos(\phi)= acos( arcsin( \frac{L}{a}cos(\phi)))= a \sqrt{1-  (\frac{L}{a})^2} $$
+
+$$ v_0 sin(\phi) = -bsin( arcsin( \frac{L}{a}cos(\phi)))=-b \frac{L}{a}cos(\phi)) $$
+
+Resolvemos el sistema de ecuaciones
+
+$$ a= \sqrt{v_0^2 cos(\phi)^2 +L^2} \qquad b=- \frac{v_0 sin(\phi)}{L}\sqrt{v_0^2cos(\phi)^2 +L^2} $$
+
+finalmente la ecuaciones son:
+
+$$x(t)= ( \sqrt{v_0^2 cos(\phi)^2 +L^2} sin(t), - \frac{v_0 sin(\phi)}{L}\sqrt{v_0^2cos(\phi)^2 +L^2}cos(t))$$
+
+notar que al derivar tenemos que la constate que acompaña a t esta implicita y vale 1, solo sale la dimesion que es inversa al tiempo
+
+ademas $$ lvl = \lambda v_i $$
+\textbf{Electromagnetismo}
+
+Un campo magnetico constante con un elecrico constante perpendicular producen una trayectoria de una cicloide.
+
+
+la ecuacion es
+
+$$x(t) = a(t-sin(t)), a(1-cos(t)) $$
+
+
+\end{quote}
+\end{document}
