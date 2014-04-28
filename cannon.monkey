@@ -54,7 +54,23 @@ Class Bullet Implements iDrawable
 				Local d:Float = Sqrt( ca + co )
 
 				If ( d <= max )
-					Self.the_planet.HitByBullet(Self, 1)
+
+					Local zone := 0
+					Local angle:= 0
+
+					If (Self.the_planet.rotation <= 0)
+						angle = 360 + ( ( Self.the_planet.rotation - 22.5 ) Mod 360 )
+					Else
+						angle = ( ( Self.the_planet.rotation - 22.5 ) Mod 360 )
+					EndIf
+
+					If (angle = 360)
+						angle = 0
+					EndIf
+
+					zone = 7 - ( angle / 45 )
+
+					Self.the_planet.HitByBullet(Self, zone)
 					Self.state = STATE_EXPLODE
 					Self.animation.PlaySequence("explode", 24)
 				EndIf

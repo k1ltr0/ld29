@@ -81,6 +81,11 @@ Class Planet Implements iDrawable
 	Field max_time:Int = 3000
 	Field timer:Int = 0
 
+	Field max_time_pain:Int = 500
+	Field timer_pain:Int = 0
+
+	Field feeling_pain:Bool = False
+
 	Method New()
 		idle_animation = New lpAnimatedSprite("planet.png", New Vector2(0,0), 230, 230, 20)
 
@@ -140,13 +145,28 @@ Class Planet Implements iDrawable
 		If ( idle_animation.IsLastFrame() And idle_animation.GetCurrentSequenceName() = "rage" )
 			Self.idle_animation.PlaySequence("idle", 50)
 		EndIf
-		
+
+		If ( Self.feeling_pain )
+
+			Self.timer_pain += delta
+
+			If (Self.timer_pain >= max_time_pain)
+				Self.timer_pain = 0
+				Self.feeling_pain = False
+			EndIf
+		End
 
 		timer += delta
 	End
 
 	Method Render:Void()
 		PushMatrix()
+			If (Self.feeling_pain)
+				If ( Int(Self.timer_pain * 0.01) Mod 2 = 0 )
+					SetColor(255,0,0)
+				EndIf
+			End
+				
 			Translate( Self.position.X, Self.position.Y ) 
 			Rotate( rotation )
 			DrawCircle(0,0, Self.radius)
@@ -157,19 +177,25 @@ Class Planet Implements iDrawable
 			For Local t:=Eachin Self.tentacles
 				t.Render()
 			Next
+
+			SetColor(255,255,255)
 		PopMatrix()
 	End
 
 	Method HitByBullet:Void(bullet:Bullet, nth:Int)
 
-		''' play sound
-		PlaySound(hit_sound, channel)
-		channel += 1
-		If (channel >= 5)
-			channel = 0
-		EndIf
+		If (Self.tentacles.Get(nth).state = Tentacle.STATE_WEAK)
+			Self.tentacles.Get(nth).HitBy()
 
-		Self.tentacles.Get(nth).HitBy()
+			Self.feeling_pain = True
+		Else
+			''' play sound
+			PlaySound(hit_sound, channel)
+			channel += 1
+			If (channel >= 5)
+				channel = 0
+			EndIf
+		End
 
 		''' shake camera
 		GameScene.GetInstance().Shake(100, 5)
