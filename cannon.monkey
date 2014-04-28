@@ -18,18 +18,28 @@ Class Bullet Implements iDrawable
 
 	Field state:Int = STATE_IDLE
 
+	Field animation:lpAnimatedSprite
+
 	Method New(planet:Planet)
 		position = New Vector2()
 		position.X = DeviceWidth()/2
 		position.Y = DeviceHeight()
 
 		Self.the_planet = planet
+
+		Self.animation = New lpAnimatedSprite( "bullet.png", Vector2.Zero(), 211, 31, 6 )
+		Self.animation.AddSequence( "shot", [0] )
+		Self.animation.AddSequence( "explode", [0,1,2,3,4,5] )
+
+		Self.animation.PlaySequence( "shot" )
 	End
 
 	Method Create:Void()
 	End
 
 	Method Update:Void(delta:Int)
+
+		Self.animation.Update(delta)
 
 		Select state
 			Case STATE_FIRED
@@ -44,24 +54,32 @@ Class Bullet Implements iDrawable
 				Local d:Float = Sqrt( ca + co )
 
 				If ( d <= max )
-					Self.the_planet.HitByBullet(Self)
+					Self.the_planet.HitByBullet(Self, 1)
 					Self.state = STATE_EXPLODE
+					Self.animation.PlaySequence("explode", 24)
 				EndIf
 			Case STATE_IDLE
 			Case STATE_EXPLODE
-				state = STATE_IDLE
+				'state = STATE_IDLE
 
-				'''reset position
-				position.X = DeviceWidth()/2
-				position.Y = DeviceHeight()
+				If (Self.animation.IsLastFrame())
+					Self.animation.PlaySequence("shot")
+					state = STATE_IDLE
 
-				'''play metal sound
+					'''reset position
+					position.X = DeviceWidth()/2
+					position.Y = DeviceHeight()
+				EndIf
 		End
+
+		Self.animation.Position.X = position.X - Self.animation.Position.Width * 0.45
+		Self.animation.Position.Y = position.Y - Self.animation.Position.Height * 0.7
 		
 	End
 
 	Method Render:Void()
-		DrawCircle( Self.position.X, Self.position.Y, Self.radius)
+		'DrawCircle( Self.position.X, Self.position.Y, Self.radius)
+		Self.animation.Render()
 	End
 
 	Method Shot:Void()

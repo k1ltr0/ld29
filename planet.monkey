@@ -5,15 +5,28 @@ Class Tentacle Implements iDrawable
 
 	Field animation:lpAnimatedSprite
 
+	Field nth:Int = 0
+	Field weak_position:Vector2
+
+	Const STATE_IDLE:Int = 0
+	Const STATE_WEAK:Int = 1
+
+	Field state:Int = STATE_IDLE
+
 	Method New(n:Int)
+
+		Self.nth = n
+
 		Self.animation = New lpAnimatedSprite("tentacle.png", Vector2.Zero(), 200, 161, 15)
 		Self.animation.AddSequence("hit", [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14])
 		Self.animation.PlaySequence("hit", 50)
 
 		Self.animation.AddSequence("idle", [0])
 
-		Self.animation.Position.X = 100 * Sin(n*45) - 15
-		Self.animation.Position.Y = 100 * Cos(n*45) - 150
+		Self.weak_position = New Vector2( 110 * Sin(nth * 45), 110 * Cos(nth * 45) )
+
+		Self.animation.Position.X = 100 * Sin(nth*45) - 15
+		Self.animation.Position.Y = 100 * Cos(nth*45) - 150
 
 		Self.animation.SetPivot(13, 150)
 		Self.animation.SetRotation( ( n - 3 ) * 45 )
@@ -26,6 +39,7 @@ Class Tentacle Implements iDrawable
 		Self.animation.Update(delta)
 
 		If ( Self.animation.GetCurrentSequenceName() = "hit" And Self.animation.IsLastFrame() )
+			state = STATE_WEAK
 			Self.animation.PlaySequence("idle")
 		EndIf
 		
@@ -33,10 +47,18 @@ Class Tentacle Implements iDrawable
 
 	Method Render:Void()
 		Self.animation.Render()
+
+		If (state = STATE_WEAK)
+			DrawCircle(Self.weak_position.X, Self.weak_position.Y, 20)
+		EndIf
 	End
 
 	Method Hit:Void()
 		Self.animation.PlaySequence("hit", 20)
+	End
+
+	Method HitBy:Void()
+		state = STATE_IDLE
 	End
 
 End
@@ -138,7 +160,7 @@ Class Planet Implements iDrawable
 		PopMatrix()
 	End
 
-	Method HitByBullet:Void(bullet:Bullet)
+	Method HitByBullet:Void(bullet:Bullet, nth:Int)
 
 		''' play sound
 		PlaySound(hit_sound, channel)
@@ -146,6 +168,8 @@ Class Planet Implements iDrawable
 		If (channel >= 5)
 			channel = 0
 		EndIf
+
+		Self.tentacles.Get(nth).HitBy()
 
 		''' shake camera
 		GameScene.GetInstance().Shake(100, 5)
