@@ -98,5 +98,42 @@ la ecuacion es
 $$x(t) = a(t-sin(t)), a(1-cos(t)) $$
 
 
+\textbf{Inercia- velocidad angulares distintas dependiendo del radio, masa y tentaculos}
+
+Usando conservacion de momento angular
+
+$$\omega_1^2 I_1 = I_2 \omega_2^2 $$
+
+donde $\omega_i$ son las velocidades angulares en diferentes momentos (1 es la inicial) y $I$ es el tensor de inercia
+
+
+$$I_1= MR^2$$
+M masa central y R es el radio inicial (200 pixeles de diametro el monstruo  creo, por lo tanto R=100 pixeles)
+
+$$I_2 = \sum_{i=1}^5 m_i (R_1 + (i-1)\delta R)^2 $$ 
+ya que cada anillo tiene una diferencia de $\delta R$ y ademas son solo 5
+
+pero ademas depende la masa de cada capa, luego si cada capa se divide en $N_i$ (pueden ser distintos) y cada capa tiene $n_i$ divisiones consideradas(pueden ser distintos)
+$$I_2= \sum_{i=1}^5  m_o \frac{n_i}{N_i}( R_1 + (i-1)\delta R )^2 = m_o(R_1^2 +\delta R^2)\sum_{i=1}^5\frac{n_i}{ N_i} + 2 \delta Rm_o \sum_{i=1}^5 \frac{n_i}{N_i}(i-1)  $$
+
+Luego la nueva velocidad es
+
+
+$$\omega_2 = \omega_1 \sqrt{\frac{m_oR^2}{m_o(R_1^2 +\delta R^2)\sum_{i=1}^5\frac{n_i}{ N_i} + 2 \delta Rm_o \sum_{i=1}^5 \frac{n_i}{N_i}(i-1)}}$$
+
+\textbf{velocidad de salida tencaculo}
+$$v= \sqrt{F_o\cdot L / m} $$
+
+$F_o$ es la fuerza que le da, puede ser un valor random cada ves
+$L$ largo del tentaculo (onda cuantas capas ocupa, de 1 a 5)
+$m$ masa del tentaculo (que depende del numero en que se divide cada capa, y del largo)
+
+
+
+
+
+
+
+
 \end{quote}
 \end{document}
